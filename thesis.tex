@@ -1,0 +1,59 @@
+\documentclass[
+12pt         % Moar bigger
+,twoside     % fogs hates this, but they hate everything
+,openright   % fogs hates this too
+]{mythesis}
+
+% I used these in my thesis.  They're useful.  booktabs makes non-shit
+% tables.
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+
+\title{Phylogenetic models \\%
+  of trait evolution}
+%
+\author{Matthew Wesley Pennell}
+%
+\month{\textsc{April}} \year{2015}
+\previousdegrees{B.Sc., (Hons) Simon Fraser University, 2010}
+\degreetitle{Doctor of Philosophy}
+\department{Bioinformatics and Computational Biology}
+
+\begin{document}
+
+\maketitle
+
+% I worked in different files: input them like so:
+
+\input{abstract}
+%\input{preface}
+% This is because FoGS formatting pedandtry is especially accute when
+% it comes to tables of contents
+\allcontents
+\input{acknowledgements}
+\input{dedication}
+\cleardoublepage
+\mainbody
+
+\input{introduction}
+\input{punceq}
+\input{geiger}
+\input{sexchrom}
+\input{modeladequacy}
+\input{wood}
+%\input{conclusion}
+
+\formatbibliography
+\bibliographystyle{refstyle}
+\bibliography{refs-thesis}
+
+%\formatappendices
+%\input{anappendix}
+
+\end{document}
+
+%%% Local Variables:
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% End:
