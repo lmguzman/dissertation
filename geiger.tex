@@ -4,6 +4,10 @@
   models to phylogenetic trees. Bioinformatics 15:2216--2218.}} 
 \label{chap:geiger}
 
+\section{Summary}
+Phylogenetic comparative methods are essential for addressing evolutionary hypotheses with interspecific data. The scale and scope of such data has increased dramatically in the last few years. Many existing approaches are either computationally infeasible or inappropriate for data of this size. To address both of these problems, we present \textsc{geiger v2.0}, a complete overhaul of the popular R package \textsc{geiger} \citep{Harmon2008}. We have re-implemented existing methods with more efficient algorithms and have developed several new approaches for accomodating heterogeneous models and data types.  
+
+
 \section{Introduction}
 
 In the past few decades, phylogenetic trees have become an key component of evolutionary research. This development has been fueled by the increased availability of robust time-calibrated phylogenies for many groups, in addition to an expanding number of statistical techniques for inferring patterns and processes from comparative data \citep[reviewed in][]{PennellHarmon}. Among the many R packages developed for phylogenetic and comparative data, \textsc{geiger} \citep{Harmon2008} has been a primary utility for making macroevolutionary inferences from phylogenetic trees. 
@@ -42,10 +46,10 @@ For discrete character data (for example, the presence or absence of fur), the m
 transition among these, where the rate of transition from state $i$ to
 state $j \neq i$ is $q_{ij}$.  Considering just one branch in a
 phylogeny, let $\vec D$ be the vector of probabilies of the data given
-we are in state $i$ (that is, the $i$th element of $D$ is the
+we are in state $i$, that is, the $i$th element of $D$ is the
 probability of the data descended from this point in the tree, given
 that we are in state $i$; see \citet{Maddison2007} and \citet{FitzJohn2012}
-for notation).
+for notation.
 
 In most R-based implementations of Mk, e.g., \textsc{ape} \citep{ape}
 and previous versions of \textsc{geiger} \citep{Harmon2008} to move from the
@@ -79,14 +83,14 @@ approximately linearly.
 
 \subsection{Bayesian methods for fitting models of character evolution}
 
-A major addition to \textsc{geiger} is the implementation of several Bayesian methods for fitting models of trait evolution to comparative data. These include the \textsc{auteur} approach of \citet{Eastman2011}, which uses reversible jump Markov chain Monte Carlo machinery \citep{Green1995} to move across multi-rate  models of various complexity. The implementation of this method in \textsc{geiger v2.0} improves upon the original by allowing model partitions to be constrained \emph{a priori} and alternative models to be compared \citep{Eastmanlevy}. Additionally, \textsc{geiger} now includes: a method for fitting models to phylogenies including unresolved clades using Approximate Bayesian Computation \citep[\textsc{mecca};][]{Slater2012MECCA}; a method for including fossil information as priors on node states \citep{Slater2012Fossil}; and a posterior predictive simulation approach for assessing the adequacy of common models of trait evolution \citep{SlaterPennell}. These types of approaches, which allow for greater complexity both in models and data, will be essential to making robust evolutionary inferences from large comparative datasets.  
+A major addition to \textsc{geiger} is the implementation of several Bayesian methods for fitting models of trait evolution to comparative data. These include the \textsc{auteur} approach of \citet{Eastman2011}, which uses reversible jump Markov chain Monte Carlo machinery \citep{Green1995} to move across multi-rate  models of various complexity. The implementation of this method in \textsc{geiger v2.0} improves upon the original by allowing model partitions to be constrained \emph{a priori} and alternative models to be compared \citep{Eastmanjump}. Additionally, \textsc{geiger} now includes: a method for fitting models to phylogenies including unresolved clades using Approximate Bayesian Computation \citep[\textsc{mecca};][]{Slater2012MECCA}; a method for including fossil information as priors on node states \citep{Slater2012Fossil}; and a posterior predictive simulation approach for assessing the adequacy of common models of trait evolution \citep{SlaterPennell}. These types of approaches, which allow for greater complexity both in models and data, will be essential to making robust evolutionary inferences from large comparative datasets.  
 
 
 \subsection{Inferring shifts in the rate of lineage diversification}
 
 \citet{Alfaro2009} developed an approach, \textsc{medusa}, to detect shifts in diversification rates from molecular phylogenies using a stepwise-AIC algorithm. A single-rate birth-death model is fit to the entire tree, then the tree is partitioned into two rate classes, breaking the tree at all possible nodes. The partition which improves the fit of the model is then fixed and the process is repeated, breaking the tree into three partitions, and so on, until a stopping criterion is reached. \textsc{medusa} can be applied to both fully bifurcating and unresolved trees. 
 
-For this release of \textsc{geiger}, the MEDUSA algorithm has been improved in a number of ways. It has been re-coded so that it is now orders of magnitude faster and scales well to large trees; this version of \textsc{medusa} has already been applied to a phylogeny of all 9,993 extant bird species \citep{Jetz2012}. We have also developed tools for summarizing \textsc{medusa} analyses across a distribution of trees, such as from a Bayesian posterior or from non-parametric bootstrapping, so that uncertainty in both topology and branch lengths can be accomodated. we took a simulation based approach. 
+For this release of \textsc{geiger}, the \textsc{medusa} algorithm has been improved in a number of ways. It has been re-coded so that it is now orders of magnitude faster and scales well to large trees; this version of \textsc{medusa} has already been applied to a phylogeny of all 9,993 extant bird species \citep{Jetz2012}. We have also developed tools for summarizing \textsc{medusa} analyses across a distribution of trees, such as from a Bayesian posterior or from non-parametric bootstrapping, so that uncertainty in both topology and branch lengths can be accomodated. we took a simulation based approach. 
 
 The most significant improvement for this version of \textsc{medusa} is in the model selection procedure. As stated above, the \textsc{medusa} algorithm involves comparing the fit of diversification models of varying dimensions (number of parameters). To select an appropriate model, we use Akaike Information Criterion \citep[AIC;][]{Akaike1974}, together with the small-sample bias-correction \citep[AICc;][]{BA2004}:
 
