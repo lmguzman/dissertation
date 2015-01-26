@@ -30,6 +30,8 @@
 \DeclareOption{openright}{\PassOptionsToClass{openright}{report}}
 \DeclareOption{versioninfo}{\versioninfotrue}
 
+
+
 \ProcessOptions\relax
 
 \LoadClass[letterpaper]{report}
@@ -240,10 +242,16 @@
 % FoGS wants each line of the ToC/LoT/LoF to have dotted leaders
 % (chapters don't by default, as this looks ugly).  I've gone for
 % less-frequent dots here, as it looks somewhat nicer.
+%\RequirePackage{titletoc}
+%\titlecontents{chapter}[0pt]%
+%{\addvspace{.7pc}}{\sc\makebox[0pt][r]{\thecontentslabel\enspace}}%
+%{\sc}{\titlerule*[1pc]{.}\contentspage}
+
 \RequirePackage{titletoc}
 \titlecontents{chapter}[0pt]%
-{\addvspace{.7pc}}{\sc\makebox[0pt][r]{\thecontentslabel\enspace}}%
+{\addvspace{0.7pc}}{\sc\makebox[0pt][r]{\thecontentslabel\enspace}}%
 {\sc}{\titlerule*[1pc]{.}\contentspage}
+
 
 % Prefix list of figures/tables with "Figure" and Table", as per FoGS
 % request, in case people get confused about what they might find in a

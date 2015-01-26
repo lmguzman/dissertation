@@ -126,7 +126,7 @@ We used a phylogeny of Angiosperms, containing 30,535 species, from a recent stu
 %% matched to tree: 936
 The full data set includes 3293 species for SLA, of which 2200 match species in the \citet{Zanne2013} tree. For seed mass, the dataset included 22,817 species with 11,107 matched the phylogeny. For leaf nitrogen content, we have data for 1574 species with 936 included in the tree. 
 %
-See \texttt{https://github/richfitz/modeladequacy} for specific locations and scripts to access and process the original data. 
+See \url{https://github/richfitz/modeladequacy} for specific locations and scripts to access and process the original data. 
 
 We log-transformed all data prior to analysis. We did this for biological reasons rather than to conform the data to the assumptions of the model \citep{Houle2011}. It is more meaningful to model trait evolution as a multiplicative process rather than an arithmetic one. An increase of two grams is much more significant for the seed of an orchid than the seed of a palm tree. However, we should recognize that both of these rationales are essentially statements about model adequacy and thus the validity of the log transformation can be quantitatively assessed. We ran our analysis on both the raw and log transformed data.
 
@@ -164,7 +164,7 @@ Again, for each model/trait/subtree combination, we ran a Markov chain for 10,00
 
 In the likelihood analyses, for each dataset, we had one set $\mathcal{T}_X$ of observed test statistics and a 1000 sets $\mathcal{T}_{Y,1}, \mathcal{T}_{Y,2}, \ldots, \mathcal{T}_{Y,1000}$ of test statistics calculated on data simulated on the same unit tree. In the Bayesian version, we had 1000 sets of observed test statistics $\mathcal{T}_{X,1}, \mathcal{T}_{X,2}, \ldots, \mathcal{T}_{X,1000}$ using a different unit tree for each set and 1000 sets of simulated test statistics $\mathcal{T}_{Y,1}, \mathcal{T}_{Y,2}, \ldots, \mathcal{T}_{Y,1000}$, each $\mathcal{T}_{Y,i}$ corresponding to the unit tree used to compute $\mathcal{T}_{X,i}$.
  
-For both types of analyses, we report two-tailed $p$-values (i.e., the probability that the observed that a simulated test statistic was more extreme than the observed). As a multivariate measure of model adequacy, we calculated the Mahalanobis distance, a scale-invariant metric, between the observed test statistics and the mean of our simulated test statistics, taking into account the covariance structure between the simulated test statistics. We took the log of the \text{KS} D-statistic, $D_{\text{CDF}}$, as the Mahanalobis measure assumes data is multivariate normal and the D-statistic is bounded between 0 and 1. For the Bayesian analyses, we report the mean of the distribution of Mahalanobis distances. All analyses were conducted in R v3.0.2. Scripts to fully reproduce all analyses are available at \texttt{https://github.com/richfitz/modeladequacy}.
+For both types of analyses, we report two-tailed $p$-values (i.e., the probability that the observed that a simulated test statistic was more extreme than the observed). As a multivariate measure of model adequacy, we calculated the Mahalanobis distance, a scale-invariant metric, between the observed test statistics and the mean of our simulated test statistics, taking into account the covariance structure between the simulated test statistics. We took the log of the \text{KS} D-statistic, $D_{\text{CDF}}$, as the Mahanalobis measure assumes data is multivariate normal and the D-statistic is bounded between 0 and 1. For the Bayesian analyses, we report the mean of the distribution of Mahalanobis distances. All analyses were conducted in R v3.0.2. Scripts to fully reproduce all analyses are available at \url{https://github.com/richfitz/modeladequacy}.
   
 \subsection{A case study: seed mass evolution in the Meliaceae and Fagaceae }
 As an illustration of our approach, we present a case study examining seed mass evolution in two tree families, the Meliaceae, the ``mahogany family'', and Fagaceae, which contains oaks, chestnuts and beech trees. The trait data and phylogeny for both groups are subsets of the larger dataset used in the analysis. Superficially, these datasets are quite similar. Both are of similar size (Meliaceae: 44 species in the dataset, 550 in the clade; Fagaceae: 70 species in the dataset and 600 in the clade), age (crown age of Meliaceae: $\sim$53my; Fagaceae: $\sim$40my) and are ecologically comparable in terms of dispersal strategy and climatic niche. 
@@ -304,8 +304,6 @@ As the subclades are not independent (overlapping sets of taxa are present in fa
   \label{fig:supp-age-ml}
 \end{figure}
 
-Full results from all analyses can be reproduced using code and workflows available at \texttt{https://github.com/richfitz/modeladequacy}. 
-
 
 \subsubsection{Bayesian Inference}
 
@@ -409,7 +407,7 @@ It may also be possible to extend our approach with an eye towards model selecti
 
 \section{Arbutus}
 
-We have implemented our approach in a new R package \textsc{arbutus}. It is available on github \texttt{https://github.com/mwpennell/arbutus}. For this project, we have also adopted code from the \textsc{ape} \citep{ape}, \textsc{geiger} \citep{geiger2} and \textsc{diversitree} \citep{FitzJohn2012} libraries. We have written functions to parse the output of a number of different programs for fitting trait evolution models (see the \textsc{arbutus} website for an up-to-date list of supported models and packages). As this approach was developed to be general, we have written the code in such a way that users can include their own test statistics and trait models in the analyses.
+We have implemented our approach in a new R package \textsc{arbutus}. It is available on github \url{https://github.com/mwpennell/arbutus}. For this project, we have also adopted code from the \textsc{ape} \citep{ape}, \textsc{geiger} \citep{geiger2} and \textsc{diversitree} \citep{FitzJohn2012} libraries. We have written functions to parse the output of a number of different programs for fitting trait evolution models (see the \textsc{arbutus} website for an up-to-date list of supported models and packages). As this approach was developed to be general, we have written the code in such a way that users can include their own test statistics and trait models in the analyses.
 
 \section{Concluding remarks}
 Attempts to assess the adequacy of phylogenetic models are almost as old as modern comparative phylogenetic biology. In the 1980s and 1990s much discussion surrounded the appropriateness of various methods and models \citep{Felsenstein1985, Felsenstein1988, HarveyPagel1991, Garland1992, Diaz1996, Price1997, Garland1999, GarlandIves2000}. We argue that this discussion is key to progressing in our field. This is not simply because we are concerned that many inferences may not be robust to model violations. Rather, we believe that considering model adequacy can help suggest new ways of thinking about how to combine data and models to test macroevolutionary hypotheses.
