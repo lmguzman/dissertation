@@ -210,8 +210,7 @@
   \bigskip\bigskip\bigskip\bigskip
 
   \textit{by}\\[12pt]
-  {\large\textssc\@author\\[6pt]}
-  {\footnotesize\@previousdegrees}\\[12pt]
+  {\large\textssc\@author\\[12pt]}
   \bigskip
 
   \@month\ \@year\\[12pt]
@@ -299,7 +298,7 @@
 {\normalfont\normalsize\itshape}
 \titleformat{\subsubsection}[runin]{\normalfont\sc}{}{0pt}{}[\hspace{1.2ex}---]
 
-\titlespacing*{\chapter}{0pt}{1\baselineskip}{1.2\baselineskip}
+\titlespacing*{\chapter}{0pt}{-1.5\baselineskip}{1.2\baselineskip}
 \titlespacing*{\section}{0pt}{1\baselineskip}{.25\baselineskip}
 \titlespacing*{\subsection}{0pt}{1\baselineskip}{.25\baselineskip}
 
