@@ -1,6 +1,6 @@
 \chapter[Software for fitting evolutionary models to phylogenetic data]{Software for fitting evolutionary models to phylogenetic data\footnote{Previously published as: Pennell, M.W., J.M. Eastman, G.J. Slater, J.W. Brown, J.C. Uyeda,
   R.G. FitzJohn, M.E. Alfaro, and L.J. Harmon. 2014.
-  geiger v2.0: an expanded suite of methods for fitting macroevolutionary
+  \textsc{geiger v2.0}: an expanded suite of methods for fitting macroevolutionary
   models to phylogenetic trees. Bioinformatics 15:2216--2218.}} 
 \label{chap:geiger}
 
@@ -12,7 +12,7 @@ Phylogenetic comparative methods are essential for addressing evolutionary hypot
 
 In the past few decades, phylogenetic trees have become an key component of evolutionary research. This development has been fueled by the increased availability of robust time-calibrated phylogenies for many groups, in addition to an expanding number of statistical techniques for inferring patterns and processes from comparative data \citep[reviewed in][]{PennellHarmon}. Among the many R packages developed for phylogenetic and comparative data, \textsc{geiger} \citep{Harmon2008} has been a primary utility for making macroevolutionary inferences from phylogenetic trees. 
 
-However, in the 6 years since the initial release of \textsc{geiger}, the data available for comparative biology have changed substantially. For some groups, we now have phylogenies and corresponding trait data with thousands (and even tens of thousands) of species \citep[e.g.,][]{Jetz2012, Rabosky2012, PyronBurbrink2013, ksi,Zanne}. \textsc{geiger v2.0} is a complete overhaul of the previous release \citep{Harmon2008}, designed to scale up comparative methods to large data sets. To do so,  we have taken two complementary tacks. The first is to improve algorithms and implementations to increase computational efficiency of existing methods. The second is to expand the suite of statistical approaches to allow for heterogeneity in both models and data types across the phylogeny.  
+However, in the six years since the initial release of \textsc{geiger}, the data available for comparative biology have changed substantially. For some groups, we now have phylogenies and corresponding trait data with thousands, and even tens of thousands, of species \citep[e.g.,][]{Jetz2012, Rabosky2012, PyronBurbrink2013, ksi,Zanne}. \textsc{geiger v2.0} is a complete overhaul of the previous release \citep{Harmon2008}, designed to scale up comparative methods to large data sets. To do so,  we have taken two complementary tacks. The first is to improve algorithms and implementations to increase computational efficiency of existing methods. The second is to expand the suite of statistical approaches to allow for heterogeneity in both models and data types across the phylogeny.  
 
 In this chapter, we briefly describe the methods now in \textsc{geiger}, with a particular focus on novel implementations and algorithms. Most of these methods have been previously published elsewhere in some form and we refer readers to the relevant publications for full explanations. For an overview of the main features of the package, see Table \ref{tab:geiger-fxns}.
 
@@ -31,7 +31,7 @@ In this chapter, we briefly describe the methods now in \textsc{geiger}, with a 
     \texttt{medusa} & Estimate shifts in diversification rates & \citet{Alfaro2009} \\ \hline
      \texttt{congruify.phylo} & Time-scale large phylogenies & \citet{Eastman2013} \\ \hline
   \end{tabular}
-\caption[Major features of geiger v2.0]{Major functions of \textsc{geiger v2.0} with description and citations}
+\caption[Major features of \textsc{geiger v2.0}]{Major functions of \textsc{geiger v2.0} with description and citations}
 \label{tab:geiger-fxns}
 \end{table}
 
@@ -53,11 +53,11 @@ for notation.
 
 In most R-based implementations of Mk, e.g., \textsc{ape} \citep{ape}
 and previous versions of \textsc{geiger} \citep{Harmon2008} to move from the
-tip to the base of a branch, we multiply $\vec D$ by $\mathbf{P}(t)$: the
+tip to the base of a branch, we multiply $\vec D$ by $\mathbf{P}(t)$, the
 transition probability matrix with off--diagonal elements that describe
 the probability of moving from state $i$ to state $j$ over time $t$
 and diagonal elements that describe the probability of not changing
-from state $i$.  To compute $P(t)$, we take the transition rate matrix
+from state $i$.  To compute $\mathbf{P}(t)$, we take the transition rate matrix
 $\mathbf{Q}$ composed of $q$ parameters above and compute
 $\mathbf{P}(t) = \exp(\mathbf{Q} t)$ where $\exp$ is the matrix
 exponential \citep{Sidje-1998-130}.
@@ -101,7 +101,7 @@ The most significant improvement for this version of \textsc{medusa} is in the m
 
 where $\mathcal{L}_{i}$ is the maximized joint likelihood of model $i$ with $k_{i}$ estimable (free) parameters, and $n$ data points. Here, $k$ is the number of diversification parameters (net diversification rates, $r_{i} = \lambda_{i} - \mu_{i}$, and extinction fractions, $\epsilon_{i} = \mu_{i}/\lambda_{i}$) plus the number of inferred rate shifts. It is unclear whether the shift locations are indeed `free' parameters of the model as they are not all estimated simultaneously--each additional shift that is introduced reduces the number of possible locations in the next iteration of the algorithm. This is a complex issue and we do not have a strong statistical argument for including them as parameters or not; as such, we have elected to be conservative and penalize adding them as we would any other parameter. For \textsc{medusa}, the sample size $n$ is taken to be the total number of ``observed'' nodes in a tree (internal $+$ pendant). 
 
-However, because \textsc{medusa} considers all possible nested piecewise diversification models, an additional concern is that of multiple testing: as trees grow larger, it becomes increasingly likely that spurious stochastic rate shifts are inferred when no real shifts exist. Indeed, simulations show that the original version of \textsc{medusa} has a high rate of false positives for large phylogenetic trees (more than $\approx$50 unresolved tips). We therefore determined an an acceptance threshold (AICc$_t$) through simulation (Fig. \ref{fig:medusa-threshold}). Ten thousand single-rate birth-death trees were generated for each of a number of resulting extant taxa $N = \lbrace$10, 20, 50, 100, 200, 400, 500, 750, 1000, 1500, 2000, 2500$\rbrace$ using the R package \textsc{treesim} \citep{treesim}. For each simulation we randomly drew diversification parameters where $\lambda \sim Unif(0,1]$ and $\mu \sim Unif[0, \lambda)$. Each tree was analyzed in \textsc{medusa}, and the difference ($\Delta$AICc) in AICc values between the (true) 0-shift model and best (incorrect) 1-shift model was logged. We then fit a $x$-shifted power function
+However, because \textsc{medusa} considers all possible nested piecewise diversification models, an additional concern is that of multiple testing: as trees grow larger, it becomes increasingly likely that spurious stochastic rate shifts are inferred when no real shifts exist. Indeed, simulations show that the original version of \textsc{medusa} has a high rate of false positives for large phylogenetic trees (more than approximately 50 unresolved tips). We therefore determined an an acceptance threshold (AICc$_t$) through simulation (Fig. \ref{fig:medusa-threshold}). 10,000 single-rate birth-death trees were generated for each of a number of resulting extant taxa $N = \lbrace$10, 20, 50, 100, 200, 400, 500, 750, 1000, 1500, 2000, 2500$\rbrace$ using the R package \textsc{treesim} \citep{treesim}. For each simulation we randomly drew diversification parameters where $\lambda \sim \mathcal{U}(0,1]$ and $\mu \sim \mathcal{U}[0, \lambda)$. Each tree was analyzed in \textsc{medusa}, and the difference ($\Delta$AICc) in AICc values between the (true) 0-shift model and best (incorrect) 1-shift model was logged. We then fit a $x$-shifted power function
 
 \begin{equation}
 \mathrm{AICc}_{t} = a (N - b)^{c} + x 
