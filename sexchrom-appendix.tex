@@ -3,7 +3,7 @@
 \subsection{Direct selection}
 
 We track the rate of appearance and establishment of a sex-autosome fusion, where the rate at which mutation generates a fusion between a sex chromosome and an autosome is $\mu^{sex}_C$ per gamete per generation for chromosome $C$ ($C = X, Y, Z, \text{or} W$) in males ($sex = m$) and females ($sex = f$). We assume that, at birth, the population is of constant total size $N$, consisting of an equal number ($N/\text{2}$) of males and females. Not all individuals survive and successfully enter the reproductive pool. Specifically, we assume that the numbers of females and males that reproduce are $N^f$ and $N^m$, where each of these reproductive individuals is expected to have a Poisson distributed number of offspring. The effective population sizes of Y and W chromosomes are then $N_{e,Y}=N^m$ and $N_{e,W}=N^f$, respectively, while the effective population sizes of X and Z chromosomes equal:
-\begin{subequations}
+\begin{subequations}\label{eq:a1}
 \begin{equation}
 N_{e,X} = \frac{\text{9}N^fN^m}{N^f + \text{2}N^m}
 \end{equation}
@@ -11,9 +11,9 @@ N_{e,X} = \frac{\text{9}N^fN^m}{N^f + \text{2}N^m}
 N_{e,Z} = \frac{\text{9}N^fN^m}{\text{2}N^f + N^m}
 \end{equation}
 \end{subequations}
-(\citealt{Wright1933}; see also \citealt{Caballero1995} for extensions to non-Poisson distributions). Note that the above equations define the effective number of chromosomes, not the effective number of individuals.
+(\citealt{Wright1933}; see also \citealt{Caballero1995}, for extensions to non-Poisson distributions). Note that the above equations define the effective number of chromosomes, not the effective number of individuals.
 
-Once the fusion appears, we approximate its establishment rate using Kimura's \citeyearpar{Kimura1962} diffusion approximation for the fixation probability. In the supplemental \emph{Mathematica} notebook, we allow for arbitrary levels of dominance of the fusion (including underdominance). Dominance has little effect on which type of fusion is expected to become established most frequently. Hence, we focus here on the simpler additive case, where the fixation probability of a fusion is:
+Once the fusion appears, we approximate its establishment rate using Kimura's \citeyearpar{Kimura1962} diffusion approximation for the fixation probability. Dominance has little effect on which type of fusion is expected to become established most frequently. Hence, we focus here on the simpler additive case, where the fixation probability of a fusion is:
 \begin{equation}\label{eq:pc}
 P_C = \frac{\text{1} - \exp[-\text{2}s_C N_{e,C}p]}{\text{1} - \exp[-\text{2}N_{e,C}s_C ]}
 \end{equation}
@@ -36,7 +36,7 @@ Below, we consider both the rate at which fusions originate and the rate at whic
 
 \subsubsection{Y-A fusions}
 
-Y-A fusions appear in the population at rate $\frac{N}{\text{2}}\mu^m_Y$. The probability that the fusion fixes is the chance that the fusion contributes to the reproductive population size of males in that generation, $N^m / (N/\text{2})$, times the probability that the fusion will be the ultimate ancestor of the Y chromosomes among the descendants after some long period of time, given by (\ref{eq:pc}) for the $C = Y$ chromosome with $N_{e,Y}=N^m$ and $p=\text{1}/N^m$. Multiplying the mutation rate by the fixation probability, the overall establishment probability for a Y-A fusion is
+Y-A fusions appear in the population at rate $\frac{N}{\text{2}}\mu^m_Y$. The probability that the fusion fixes is the chance that the fusion contributes to the reproductive population size of males in that generation, $N^m / (N/\text{2})$, times the probability that the fusion will be the ultimate ancestor of the Y chromosomes among the descendants after some long period of time, given by Equation \ref{eq:pc} for the $C = Y$ chromosome with $N_{e,Y}=N^m$ and $p=\text{1}/N^m$. Multiplying the mutation rate by the fixation probability, the overall establishment probability for a Y-A fusion is
 \begin{align}\label{eq:Ry}
 R_Y &= N^m \mu^m_Y  P_Y \nonumber \\
 &= N^m \mu^m_Y \frac{\text{1}-\exp[-\text{2}s_Y]}{\text{1}-\exp[-\text{2}N^ms_Y]}
@@ -44,7 +44,7 @@ R_Y &= N^m \mu^m_Y  P_Y \nonumber \\
 
 \subsubsection{X-A fusions}
 
-X-A fusions appear in the population at rate $\frac{N}{\text{2}}\mu^f_X$ among females and at rate $\frac{N}{\text{2}}\mu^m_X$ among males, where the former expression accounts for the fact that females carry two X chromosomes. A fusion arising in a female has a chance $N^f/\frac{N}{\text{2}}$ of surviving to reproduce. The probability that the fusion will be the ultimate ancestor of the X chromosomes after some long period of time is then given by (\ref{eq:pc}) for $C = X$, with $N_{e,X}$ given by (A.\text{1}a) and $p=\frac{\text{2}}{\text{3}}/(\text{2}N^f)$ accounting for the fact that $\frac{\text{2}}{\text{3}}$ of the X chromosomes in the next generation come from these mothers, among whom the fusion is at initial frequency $\text{1}/(\text{2}N^f)$. A similar calculation applies to males, so that the net establishment rate is approximately:
+X-A fusions appear in the population at rate $\frac{N}{\text{2}}\mu^f_X$ among females and at rate $\frac{N}{\text{2}}\mu^m_X$ among males, where the former expression accounts for the fact that females carry two X chromosomes. A fusion arising in a female has a chance $N^f/\frac{N}{\text{2}}$ of surviving to reproduce. The probability that the fusion will be the ultimate ancestor of the X chromosomes after some long period of time is then given by Equation \ref{eq:pc} for $C = X$, with $N_{e,X}$ given by Equation \ref{eq:a1}a and $p=\frac{\text{2}}{\text{3}}/(\text{2}N^f)$ accounting for the fact that $\frac{\text{2}}{\text{3}}$ of the X chromosomes in the next generation come from these mothers, among whom the fusion is at initial frequency $\text{1}/(\text{2}N^f)$. A similar calculation applies to males, so that the net establishment rate is approximately:
 \begin{equation}\label{eq:Rx}
 R_X = \text{2}N^f\mu^f_X 
 \frac{\text{1}- \exp[-\text{2}s_X N_{e,X}  \frac{\text{2}}{\text{3}} \frac{\text{1}}{\text{2}N^f} ]}{\text{1} - \exp[-\text{2}N_{e,X} s_X]} 
@@ -52,10 +52,10 @@ R_X = \text{2}N^f\mu^f_X
 \end{equation}
 
 \subsubsection{W-A fusions}
-The establishment rate of W-A fusions, $R_W$, is derived as for Y-A fusions, giving (\ref{eq:Ry}) but with $m$ replaced by $f$ and $Y$ replaced by $W$.
+The establishment rate of W-A fusions, $R_W$, is derived as for Y-A fusions, giving (Equation \ref{eq:Ry}) but with $m$ replaced by $f$ and $Y$ replaced by $W$.
 
 \subsubsection{Z-A fusions}
-The establishment rate of Z-A fusions, $R_Z$, is derived as for X-A fusions, giving (\ref{eq:Rx}) but with $m$ and $f$ interchanged and $X$ replaced by $Z$.
+The establishment rate of Z-A fusions, $R_Z$, is derived as for X-A fusions, giving (Equation \ref{eq:Rx}) but with $m$ and $f$ interchanged and $X$ replaced by $Z$.
 
 \subsubsection{Neutral fusions}
 When selection is negligible, the above formulae can be simplified substantially. In the limit for neutral fusions ($s_C=\text{0}$), the net establishment rate equals the rate at which each type of fusion arises: 
@@ -89,7 +89,7 @@ The relative establishment rates also get simplified substantially when selectio
 \frac{R_Z}{R_X} = \frac{\text{2}\alpha + \text{1}}{\text{2} +\alpha} \left(\text{1} + \theta \frac{\text{9}(\text{1} - \gamma)}{\text{8}(\text{2}+\gamma)(\text{1}+\text{2}\gamma)} \right),
 \end{equation}
 \end{subequations}
-where fusions arise in males at a rate $\alpha=\mu^m/\mu^f$ times that in females and the number of reproductive females is $\gamma=N^f/N^m$ times the number of males (so that the sex ratio $N^m/(N^m + N^f) = \text{1}/(\gamma + 1)$). In the absence of a sex bias in the mutation rate ($\alpha=\text{1}$) or number of reproductive individuals ($\gamma=\text{1}$), we find that 
+where fusions arise in males at a rate $\alpha=\mu^m/\mu^f$ times that in females and the number of reproductive females is $\gamma=N^f/N^m$ times the number of males, so that the sex ratio $N^m/(N^m + N^f) = \text{1}/(\gamma + 1)$. In the absence of a sex bias in the mutation rate ($\alpha=\text{1}$) or number of reproductive individuals ($\gamma=\text{1}$), we find that 
 \[\frac{R_Y}{R_X}=\frac{R_W}{R_X}=\text{1} - \frac{\theta}{\text{4}} \]
 and 
 \[\frac{R_Z}{R_X} = \text{1}.\]
@@ -107,12 +107,12 @@ Similarly, the overall rate at which fusions arise in XY systems versus ZW syste
 \left(\frac{\text{9}(\text{1}-\gamma)}{\text{8}(\text{2}+\gamma)(\text{1}+\text{2}\gamma)} \right) \right].
 \end{align}
 
-\subsection{Sex-Antagonistic selection}
+\subsection{Sexually antagonistic selection}
 Consider an autosomal locus with selection acting in opposite directions in males and females, with allele $A_0$ favored in males and allele $A_\text{1}$ in females. If selection is weak, the allele frequency $q_i$ of allele $A_i$ is approximately the same in males and females. Given the sex-specific fitness of genotype $ij$, $W^{sex}_{ij}$, we can then define the selection coefficient favoring allele $A_i$ in a particular sex as $s^{sex}_i=(W^{sex}_{i.}/\bar{W}^{sex})-\text{1}$. Here $W^{sex}_{i.}$ is the marginal fitness of $A_i$ in that sex ($W^{sex}_{i.}=q_0W^{sex}_{i0} + q_\text{1}W^{sex}_{i\text{1}}$), and $\bar{W}^{sex}$ is the mean fitness ($\bar{W}^{sex} = q_0W_{0.} + q_1W_{1.}$).
 
-Following similar logic used to derive equations (A.4) and (A.5), fusions bearing allele $A_i$ arise with the Y chromosome and are found in a reproductive male at rate $q_i\mu^m_YN^m$  or arise with the W and are found in a reproductive female at rate $q_i\mu^f_WN^f$. Similarly, the rate at which X-A fusions or Z-A fusions bearing allele $A_i$ originate is $q_i(\text{2}\mu^f_XN^f + \mu^m_XN^m)$ or $q_i(\mu^f_ZN^f + \text{2}\mu^m_ZN^m)$, respectively. If we assume selection is weak, we can average over the time the chromosome spends in a female and a male to obtain the strength of selection acting on a fusion bearing allele $A_i$: $s_{X,i}=\frac{\text{2}}{\text{3}}s^f_i + \frac{\text{1}}{\text{3}}s^m_i$ for an X-A fusion, $s_{Y,i}=s^m_i$ for a Y-A fusion, $s_{Z,i}=\frac{\text{1}}{\text{3}}s^f_i + \frac{\text{2}}{\text{3}}s^m_i$  for a Z-A fusion, and $s_{W,i}=s^f_i$ for a W-A fusion.
+Following similar logic used to derive Equations \ref{eq:Ry} and \ref{eq:Rx}, fusions bearing allele $A_i$ arise with the Y chromosome and are found in a reproductive male at rate $q_i\mu^m_YN^m$  or arise with the W and are found in a reproductive female at rate $q_i\mu^f_WN^f$. Similarly, the rate at which X-A fusions or Z-A fusions bearing allele $A_i$ originate is $q_i(\text{2}\mu^f_XN^f + \mu^m_XN^m)$ or $q_i(\mu^f_ZN^f + \text{2}\mu^m_ZN^m)$, respectively. If we assume selection is weak, we can average over the time the chromosome spends in a female and a male to obtain the strength of selection acting on a fusion bearing allele $A_i$: $s_{X,i}=\frac{\text{2}}{\text{3}}s^f_i + \frac{\text{1}}{\text{3}}s^m_i$ for an X-A fusion, $s_{Y,i}=s^m_i$ for a Y-A fusion, $s_{Z,i}=\frac{\text{1}}{\text{3}}s^f_i + \frac{\text{2}}{\text{3}}s^m_i$  for a Z-A fusion, and $s_{W,i}=s^f_i$ for a W-A fusion.
  
-Because the X and W are more often found in females, the fixation probability of an X-A or W-A fusion is much higher if it captures the female-benefit allele A\text{1} than if it captures the male-benefit allele (and \emph{vice versa} for Y-A and Z-A fusions). Using $\text{2}s_CN_{e,C}p$ to approximate the fixation probability (A.\text{2}) for a beneficial fusion initially at frequency $p$, the fixation probability of an X-A fusion is approximately $P_{X}=\text{2}s_{X,\text{1}}N_{e,X}p$ when it captures allele $A_\text{1}$ and zero otherwise. Similarly, $P_W = \text{2}s_{w,\text{1}}N_{e,W}p$ when a W-A fusion captures $A_\text{1}$, $P_Y = \text{2}s_{Y,0}N_{e,Y}p$ when a Y-A fusion captures $A_0$, and $P_Z=\text{2}s_{Z,0}N_{e,Z}p$ when a Z-A fusion captures $A_0$.
+Because the X and W are more often found in females, the fixation probability of an X-A or W-A fusion is much higher if it captures the female-benefit allele $A_{\text{1}}$ than if it captures the male-benefit allele (and \emph{vice versa} for Y-A and Z-A fusions). Using $\text{2}s_CN_{e,C}p$ to approximate the fixation probability (Equation \ref{eq:a1}) for a beneficial fusion initially at frequency $p$, the fixation probability of an X-A fusion is approximately $P_{X}=\text{2}s_{X,\text{1}}N_{e,X}p$ when it captures allele $A_{\text{1}}$ and zero otherwise. Similarly, $P_W = \text{2}s_{w,\text{1}}N_{e,W}p$ when a W-A fusion captures $A_\text{1}$, $P_Y = \text{2}s_{Y,0}N_{e,Y}p$ when a Y-A fusion captures $A_0$, and $P_Z=\text{2}s_{Z,0}N_{e,Z}p$ when a Z-A fusion captures $A_{\text{0}}$.
 
 Multiplying together the rate that fusions originate in each sex times their fixation probability (accounting for the initial frequency in that sex), we get the rate at which fusions are expected to become established for each sex chromosome:
 \begin{subequations}
@@ -134,7 +134,7 @@ R_z = \text{2} q_0 \frac{9N^fN^m}{N^f + \text{2}N^m}
 \end{equation}
 \end{subequations}
 
-At an autosomal locus subject to sexually antagonistic selection, each allele has spent half of its time in males and half in females, rising in frequency in one sex and falling in the other sex. Consequently, to remain at equilibrium over the longer term, the selection coefficients for each allele must balance across the sexes, with $s^f_0 = -s^m_0$ and $s^f_\text{1} = -s^m_\text{1}$ (see formal proof in the supplemental \emph{Mathematica} notebook). Furthermore, the fitness definitions imply that $q_0s^{sex}_0 + q_\text{1}s^{sex}_\text{1}$ must equal zero since they sum to
+At an autosomal locus subject to sexually antagonistic selection, each allele has spent half of its time in males and half in females, rising in frequency in one sex and falling in the other sex. Consequently, to remain at equilibrium over the longer term, the selection coefficients for each allele must balance across the sexes, with $s^f_0 = -s^m_0$ and $s^f_\text{1} = -s^m_\text{1}$. Furthermore, the fitness definitions imply that $q_0s^{sex}_0 + q_\text{1}s^{sex}_\text{1}$ must equal zero since they sum to
 \[\frac{q_0W^{sex}_{0.} + q_\text{1}W^{sex}_{\text{1}.}}{\bar{W}^{sex}} - \text{1} = \frac{\bar{W}^{sex}}{\bar{W}^{sex}} - \text{1} = 0.\]
 Using these relationships to substitute for $s^f_i$ and $q_\text{1}$, we find:
 \begin{subequations}
@@ -164,4 +164,3 @@ Thus, with equal mutation rates and equal numbers of reproductive individuals of
 \end{equation}
 \end{subequations}
 Consequently, Y-A fusions are expected to predominate (with $R_Y>\text{max}[R_X,R_W,R_Z]$) if and only if $\alpha > \gamma$.
-
