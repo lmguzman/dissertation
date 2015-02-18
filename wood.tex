@@ -124,11 +124,11 @@ names.
 %
 To bring species binomials to a common taxonomy among datasets, names
 were matched against accepted names in the Plant List
-\citep{ThePlantList}.  Any binomials not found in this list were
+\citep{theplantlist}.  Any binomials not found in this list were
 matched against the International Plant Name Index
 (\url{http://www.ipni.org/}) and Tropicos (\url{http://www.tropicos.org/}).
 Potential synonymy in binomials arising from the three lists was
-investigated using the Plant List tools \citep{ThePlantList}.  
+investigated using the Plant List tools \citep{theplantlist}.  
 % NOTE: This is the cleaning step done by `load.woodiness()`.
 As a result of this cleaning, the number of species in the final
 dataset was reduced from 49,061 to 39,313.
@@ -394,7 +394,7 @@ parameters.
 In addition to the number of species known to be woody and herbaceous,
 we also require an estimate of the number of species per genus.  For this, we
 used the number of accepted names within each genus in the Plant List
-\citep{ThePlantList}. The taxonomic resources were compiled by \citet{Zanne}
+\citep{theplantlist}. The taxonomic resources were compiled by \citet{Zanne}
 are on available on Dryad \citep{ZanneDryad}.
 
 For each genus, we sampled the states of unobserved species, from
@@ -497,7 +497,7 @@ Dryad data repository \citep[doi:10.5061/dryad.v7m14]{FitzJohnDryad}.
     vascular plants.  Each tip represents an order, with the width of
     the sector proportional to the square root of the number of
     recognised species in that order (data from accepted names in
-    \citet{ThePlantList}).  The bars around the perimeter indicate the
+    \citealt{theplantlist}).  The bars around the perimeter indicate the
     percentage of woody (black) and herbaceous (white) species,
     estimated using the ``strong prior'' (binomial) approach.  Using
     the ``weak prior'' (hypergeometric) approach generally leads to an
@@ -522,7 +522,7 @@ Dryad data repository \citep[doi:10.5061/dryad.v7m14]{FitzJohnDryad}.
     plants.  Each tip represents an order, with the fraction of
     circumference proportional to the square root of the number of
     recognised species in that order (data from accepted names in
-    \citet{ThePlantList}).  The bars around the perimeter indicate the
+    \citealt{theplantlist}).  The bars around the perimeter indicate the
     percentage of woody (black) and herbaceous (white) species,
     estimated using the ``weak prior'' (hypergeometric) approach.
     Using the ``strong prior'' (binomial) approach generally leads to
@@ -576,7 +576,7 @@ and by 1.3\% to 46.3\% under a weak prior (Figure
 \begin{figure}[p]
   \centering
   \includegraphics[width=\textwidth]{figs/distribution-raw-errors}
-  \caption[The effect of different coding on estimates]{The effect of
+  \caption[The effect of character coding on estimates]{The effect of
     different coding on estimates of the fraction of species that are
     woody, under the strong prior approach (binomial; panel A) and
     weak prior approach (hypergeometric; panel B).  The dark
