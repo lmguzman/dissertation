@@ -50,10 +50,10 @@ probability of the data descended from this point in the tree, given
 that we are in state $i$; see \citet{Maddison2007} and \citet{FitzJohn2012}
 for notation.
 
-In most R-based implementations of Mk, e.g., \textsc{ape} \citep{ape}
+In most R-based implementations of Mk, for example, \textsc{ape} \citep{ape}
 and previous versions of \textsc{geiger} \citep{Harmon2008} to move from the
 tip to the base of a branch, we multiply $\vec D$ by $\mathbf{P}(t)$, the
-transition probability matrix with off--diagonal elements that describe
+transition probability matrix with off-diagonal elements that describe
 the probability of moving from state $i$ to state $j$ over time $t$
 and diagonal elements that describe the probability of not changing
 from state $i$.  To compute $\mathbf{P}(t)$, we take the transition rate matrix
@@ -98,7 +98,7 @@ The most significant improvement for this version of \textsc{medusa} is in the m
 	\frac{2k_{i}n}{n-k_{i}-1}
 \end{equation}
 
-where $\mathcal{L}_{i}$ is the maximized joint likelihood of model $i$ with $k_{i}$ estimable (free) parameters, and $n$ data points. Here, $k$ is the number of diversification parameters (net diversification rates, $r_{i} = \lambda_{i} - \mu_{i}$, and extinction fractions, $\epsilon_{i} = \mu_{i}/\lambda_{i}$) plus the number of inferred rate shifts. It is unclear whether the shift locations are indeed `free' parameters of the model as they are not all estimated simultaneously--each additional shift that is introduced reduces the number of possible locations in the next iteration of the algorithm. This is a complex issue and we do not have a strong statistical argument for including them as parameters or not; as such, we have elected to be conservative and penalize adding them as we would any other parameter. For \textsc{medusa}, the sample size $n$ is taken to be the total number of ``observed'' nodes in a tree (internal $+$ pendant). 
+where $\mathcal{L}_{i}$ is the maximized joint likelihood of model $i$ with $k_{i}$ estimable (free) parameters, and $n$ data points. Here, $k$ is the number of diversification parameters (net diversification rates, $r_{i} = \lambda_{i} - \mu_{i}$, and extinction fractions, $\epsilon_{i} = \mu_{i}/\lambda_{i}$) plus the number of inferred rate shifts. It is unclear whether the shift locations are indeed `free' parameters of the model as they are not all estimated simultaneously; each additional shift that is introduced reduces the number of possible locations in the next iteration of the algorithm. This is a complex issue and we do not have a strong statistical argument for including them as parameters or not; as such, we have elected to be conservative and penalize adding them as we would any other parameter. For \textsc{medusa}, the sample size $n$ is taken to be the total number of ``observed'' nodes in a tree (internal $+$ pendant). 
 
 However, because \textsc{medusa} considers all possible nested piecewise diversification models, an additional concern is that of multiple testing: as trees grow larger, it becomes increasingly likely that spurious stochastic rate shifts are inferred when no real shifts exist. Indeed, simulations show that the original version of \textsc{medusa} has a high rate of false positives for large phylogenetic trees (more than approximately 50 unresolved tips). We therefore determined an an acceptance threshold (AICc$_t$) through simulation (Figure \ref{fig:medusa-threshold}). 10,000 single-rate birth-death trees were generated for each of a number of resulting extant taxa $N = \lbrace$10, 20, 50, 100, 200, 400, 500, 750, 1000, 1500, 2000, 2500$\rbrace$ using the R package \textsc{treesim} \citep{treesim}. For each simulation we randomly drew diversification parameters where $\lambda \sim \mathcal{U}(0,1]$ and $\mu \sim \mathcal{U}[0, \lambda)$. Each tree was analyzed in \textsc{medusa}, and the difference ($\Delta$AICc) in AICc values between the (true) 0-shift model and best (incorrect) 1-shift model was logged. We then fit a $x$-shifted power function
 
@@ -106,12 +106,12 @@ However, because \textsc{medusa} considers all possible nested piecewise diversi
 \mathrm{AICc}_{t} = a (N - b)^{c} + x 
 \end{equation}
 
-to the 95$^{th}$ percentile $\Delta$AICc values for each tree size (Figure \ref{fig:medusa-threshold}). The best--fitting function had $a =$ -35.94, $b =$ 6.74, $c =$ -0.10, and $x =$ 27.52. If \texttt{partition=NA} (the default argument in the \texttt{medusa} function), the AICc$_{t}$ is automatically calculated for the specified tree from this best--fitting function. For trees of 20 or fewer taxa, AICc$_{t}$ is set to 0.
+to the 95$^{th}$ percentile $\Delta$AICc values for each tree size (Figure \ref{fig:medusa-threshold}). The best-fitting function had $a =$ -35.94, $b =$ 6.74, $c =$ -0.10, and $x =$ 27.52. If \texttt{partition=NA} (the default argument in the \texttt{medusa} function), the AICc$_{t}$ is automatically calculated for the specified tree from this best-fitting function. For trees of 20 or fewer taxa, AICc$_{t}$ is set to 0.
 
 \begin{figure}[p]
  \centering
   \includegraphics[width=\textwidth]{figs/BD_percentiles}
-  \caption[Setting the \textsc{medusa} threshold via simulation]{The 95$^{th}$ percentile values for the difference in AICc scores ($\Delta$AICc) between the (incorrect) 1--shift model and the (true) 0-shift model plotted against simulated tree size. We fit a $x$-shifted power function to these points to estimate a AICc$_{t}$ with a Type-1 error rate of 0.05 for a given tree with $N$ tips.}
+  \caption[Setting the \textsc{medusa} threshold via simulation]{The 95$^{th}$ percentile values for the difference in AICc scores ($\Delta$AICc) between the (incorrect) 1-shift model and the (true) 0-shift model plotted against simulated tree size. We fit a $x$-shifted power function to these points to estimate a AICc$_{t}$ with a Type-1 error rate of 0.05 for a given tree with $N$ tips.}
   \label{fig:medusa-threshold}
 \end{figure}
 
