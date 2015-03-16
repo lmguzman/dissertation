@@ -41,17 +41,17 @@ In this chapter, we briefly describe the methods now in \textsc{geiger}, with a 
 
 Fitting and comparing  models of trait evolution can provide insight into many macroevolutionary questions \citep{PennellHarmon}. The two ``workhorse'' functions in \textsc{geiger} for fitting models of trait evolution using maximum likelihood, \texttt{fitContinuous} and \texttt{fitDiscrete}, have both been completely re-implemented. The previous version of \texttt{fitContinuous} calculated the likelihood of a set of continuous characters (e.g., body size) having evolved under a model using a variance-covariance (vcv) matrix approach. This involves inverting the vcv, which is extremely computationally intensive, making the method infeasible for large trees \citep{Hadfield2010, FitzJohn2012, Freckleton2012, Ho2014}. \citet{FitzJohn2012} demonstrated that using a ``pruning''-based algorithm \citep{Felsenstein1973} allows for much more efficient likelihood calculations. This algorithm is used the \textsc{diversitree} package \citep{FitzJohn2012}. (For related algorithms, see \citealt{Freckleton2012}, \citealt{Ho2014}). The approach has now been extended to all the models in \texttt{fitContinuous}. In addition to improving the efficiency of the algorithm, we have improved numerical optimization procedures and implemented a novel method to simultaneuously estimate model parameters and an additional term to account for measurement error.
 
-For discrete character data (for example, the presence or absence of fur), the most commonly used model is the Mk model \citep{Pagel1994, Lewis2001}.  In this model, there are $n$ states $1, 2, ..., n$ and the goal is to estimate rates of
+For discrete character data---for example, the presence or absence of fur---the most commonly used model is the Mk model \citep{Pagel1994, Lewis2001}.  In this model, there are $n$ states $1, 2, ..., n$ and the goal is to estimate rates of
 transition among these, where the rate of transition from state $i$ to
 state $j \neq i$ is $q_{ij}$.  Considering just one branch in a
-phylogeny, let $\vec D$ be the vector of probabilies of the data given
+phylogeny, let $\vec D$ be the vector of probabilities of the data given
 we are in state $i$, that is, the $i$th element of $D$ is the
 probability of the data descended from this point in the tree, given
 that we are in state $i$; see \citet{Maddison2007} and \citet{FitzJohn2012}
 for notation.
 
-In most R-based implementations of Mk, for example, \textsc{ape} \citep{ape}
-and previous versions of \textsc{geiger} \citep{Harmon2008} to move from the
+In most R-based implementations of Mk, such as \textsc{ape} \citep{ape}
+and previous versions of \textsc{geiger} \citep{Harmon2008}, to move from the
 tip to the base of a branch, we multiply $\vec D$ by $\mathbf{P}(t)$, the
 transition probability matrix with off-diagonal elements that describe
 the probability of moving from state $i$ to state $j$ over time $t$
@@ -89,7 +89,7 @@ A major addition to \textsc{geiger} is the implementation of several Bayesian me
 
 \citet{Alfaro2009} developed an approach, \textsc{medusa}, to detect shifts in diversification rates from molecular phylogenies using a stepwise-AIC algorithm. A single-rate birth-death model is fit to the entire tree, then the tree is partitioned into two rate classes, breaking the tree at all possible nodes. The partition which improves the fit of the model is then fixed and the process is repeated, breaking the tree into three partitions, and so on, until a stopping criterion is reached. \textsc{medusa} can be applied to both fully bifurcating and unresolved trees. 
 
-For this release of \textsc{geiger}, the \textsc{medusa} algorithm has been improved in a number of ways. It has been re-coded so that it is now orders of magnitude faster and scales well to large trees; this version of \textsc{medusa} has already been applied to a phylogeny of all 9,993 extant bird species \citep{Jetz2012}. We have also developed tools for summarizing \textsc{medusa} analyses across a distribution of trees, such as from a Bayesian posterior or from non-parametric bootstrapping, so that uncertainty in both topology and branch lengths can be accomodated. we took a simulation based approach. 
+For this release of \textsc{geiger}, the \textsc{medusa} algorithm has been improved in a number of ways. It has been re-coded so that it is now orders of magnitude faster and scales well to large trees; this version of \textsc{medusa} has already been applied to a phylogeny of all 9,993 extant bird species \citep{Jetz2012}. We have also developed tools for summarizing \textsc{medusa} analyses across a distribution of trees, such as from a Bayesian posterior or from non-parametric bootstrapping, so that uncertainty in both topology and branch lengths can be accomodated. 
 
 The most significant improvement for this version of \textsc{medusa} is in the model selection procedure. As stated above, the \textsc{medusa} algorithm involves comparing the fit of diversification models of varying dimensions (number of parameters). To select an appropriate model, we use Akaike Information Criterion \citep[AIC;][]{Akaike1974}, together with the small-sample bias-correction \citep[AICc;][]{BA2004}:
 

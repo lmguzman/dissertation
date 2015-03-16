@@ -3,21 +3,21 @@
 \label{chap:wood}
 
 \section{Summary}
-The question posed by the title of this paper is a basic one,
+The question posed by the title of this chapter is a basic one,
   and it is surprising that the answer is not known. Recently
   assembled trait datasets provide an opportunity to address this, but
   scaling these datasets to the global scale is challenging because of
   sampling bias.  Although we currently know the growth form of tens
   of thousands of species, these data are not a random sample of
   global diversity; some clades are exhaustively characterised, while
-  others we know little-to-nothing about.Starting with a database of woodiness for 39,313 species of
+  others we know little-to-nothing about. Starting with a database of woodiness for 39,313 species of
   vascular plants (12\% of taxonomically resolved species, 59\% of
   which were woody), we estimated the status of the remaining
   taxonomically resolved species by randomisation.  To compare the
   results of our method to conventional wisdom, we informally surveyed
   a broad community of biologists.  No consensus answer to the
   question existed, with estimates ranging from 1\% to 90\% (mean:
-  31.7\%).After accounting for sampling bias, we estimated the proportion
+  31.7\%). After accounting for sampling bias, we estimated the proportion
   of woodiness among the world's vascular plants to be between 45\%
   and 48\%.  This was much lower than a simple mean of our dataset and
   much higher than the conventional wisdom. Alongside an understanding of global taxonomic
@@ -31,10 +31,10 @@ The question posed by the title of this paper is a basic one,
 
 The distinction between a woody and non-woody growth-form is
 probably the most profound contrast among terrestrial plants and
-ecosystems: for instance, a forest is dominated by woody taxa 
-while a grassland is dominated by herbs.  The recognition of the fundamental
+ecosystems---the difference between a forest and a grassland is the presence of wood. 
+The recognition of the fundamental
 importance of this divide dates back at least to \textit{Enquiry into
-  Plants} by Theophrastus of Eresus (371-287 BC), a student of
+  Plants} by Theophrastus of Eresus (371--287 \textsc{bce}), a student of
 Plato and Aristotle, who began his investigation into plant form and
 function by classifying the hundreds of plants in his garden into
 woody and herbaceous categories \citep{theophrastus1916enquiry}.
@@ -280,7 +280,7 @@ records, 411 are entirely woody, 271 are entirely herbaceous, and only
 58 have between 10\% and 90\% woody species. Qualitatively similar patterns
 hold at both the level of family and order, though the distribution
 becomes progressively less bimodal as one moves up the taxonomic hierarchy 
-(Figs. \ref{fig:distribution-family} and \ref{fig:distribution-order}). 
+(Figures \ref{fig:distribution-family} and \ref{fig:distribution-order}). 
 As a result, knowing the state of a handful of species within a genus 
 can give a reasonable guess at the state of remaining species.
 % #rstats
@@ -477,7 +477,7 @@ confidence interval of 45.3-45.9\%) and with the weak prior
 The different approaches generated different distributions of the
 per-genus percentage of woodiness (Figure
 \ref{fig:distribution-genera}), with a less strongly bimodal
-distribution using the weak prior approach. (See Figs.
+distribution using the weak prior approach. (See Figures
 \ref{fig:distribution-family} and \ref{fig:distribution-order} 
 for the distributions at the level of families and orders, respectively.) 
 However, the two different approaches (strong
@@ -486,7 +486,7 @@ estimated woodiness (Figure \ref{fig:phylogeny} versus Figure
 \ref{fig:phylogeny-supp}), differing only in the details. We have compiled
 a table of the estimated number of woody species under both sampling
 approaches for all genera, families and orders included in our analysis.
-This is included in the Supplementary Material and is available on the 
+This is available on the 
 Dryad data repository \citep[doi:10.5061/dryad.v7m14]{FitzJohnDryad}.
 
 \begin{figure}[p]
@@ -501,7 +501,7 @@ Dryad data repository \citep[doi:10.5061/dryad.v7m14]{FitzJohnDryad}.
     percentage of woody (black) and herbaceous (white) species,
     estimated using the ``strong prior'' (binomial) approach.  Using
     the ``weak prior'' (hypergeometric) approach generally leads to an
-    estimated percentage that is closer to 50\% (see Figs.
+    estimated percentage that is closer to 50\% (see Figures
     \ref{fig:phylogeny-supp} and \ref{fig:distribution-genera}).
     Phylogeny from \citet{Zanne} (available on Dryad; 
     doi:10.5061/dryad.63q27/3). Orders not placed by APG III
@@ -527,7 +527,7 @@ Dryad data repository \citep[doi:10.5061/dryad.v7m14]{FitzJohnDryad}.
     estimated using the ``weak prior'' (hypergeometric) approach.
     Using the ``strong prior'' (binomial) approach generally leads to
     an estimated percentage that is further away from 50\% (see
-    main text Figs. 1 and 2).
+    main text Figures 1 and 2).
     Phylogeny from \citet{Zanne} (available on Dryad;
     doi:10.5061/dryad.63q27/3). Orders not placed by APG III
     \citep{APG3} are not displayed.}
@@ -537,7 +537,7 @@ Dryad data repository \citep[doi:10.5061/dryad.v7m14]{FitzJohnDryad}.
 As stated above, neither of these sampling approaches is ``correct''. However,
 as the observed distribution of woodiness fraction among genera is
 itself strongly bimodal, we believe that the true result lies closer
-to 45\% than to 47\%.  A more sophisticated hierarchical modelling
+to 45\% than to 47\%.  A more sophisticated hierarchical modeling
 approach could lead to a more precise answer, but we feel that our
 values probably span the range of estimates that such an approach
 would generate. And in any case, we felt that addressing a simple question
@@ -637,15 +637,14 @@ to 32.9\%.
     proportion of woody species from the empirical data are depicted
     by the horizontal shaded rectangles; the blue rectangle
     corresponds to the ``weak prior'' approach and the red rectangle
-    corresponds to the ``strong prior'' approach (see Appendix for
-    details).  
+    corresponds to the ``strong prior'' approach.  
     % 
     Panel A includes all 292 responses.  In panel B, the 282
     responses that indicated country are shown separated into
-    ``tropical'' (orange distribution) and ``temperate'' (teal).
+    ``tropical'' (green distribution) and ``temperate'' (purple).
     Estimates from tropical countries were slightly, but
     significantly, higher than those from temperate countries
-    ($p=$0.02, $r^2$=0.02).
+    ($p=$0.02, $R^2$=0.02).
     % #rstats
     % nrow(d.survey)                   # 292
     % sum(!is.na(d.survey$Country))    # 282
@@ -666,8 +665,7 @@ to 32.9\%.
     estimates of the proportion of woody species from the empirical
     data are depicted by the horizontal shaded rectangles; the blue
     upper rectangle corresponds to the ``weak prior'' approach and the
-    red lower rectangle corresponds to the ``strong prior'' approach
-    (see Appendix for details).}
+    red lower rectangle corresponds to the ``strong prior'' approach.}
   \label{fig:survey}
 \end{figure}
 
@@ -821,7 +819,7 @@ are model-based in that they impute trait values for missing species
 based on the fitted parameters of phylogenetic models estimated from
 the species already in the database. This is conceptually different
 from our approach; we do not assume any model for the evolution of
-woodiness, such as the `Mk' model \citep{Pagel1994}, which is commonly
+woodiness, such as the Mk model \citep{Pagel1994, Lewis2001}, which is commonly
 used to model discrete characters evolving on a phylogeny. Both types
 of approaches---using taxonomic categories (this study) versus
 modeling trait evolution along a phylogeny---have advantages and
