@@ -130,7 +130,7 @@
   % read by very intelligent people, which might reflect more on them.
   \phantomsection
   \addcontentsline{toc}{chapter}{Appendices}
-  \fancyhead[LE,RO]{\footnotesize{\spacedsmallcaps{appendix \MakeTextLowercase{\thechapter}}}}}
+  \fancyhead[RO,RE]{\footnotesize\thepage}}
 
 \newcommand{\allcontents}{
 \singlespacing
@@ -151,6 +151,11 @@
 \def\institution{\gdef\@institution}
 \def\campus{\gdef\@campus}
 \def\majorprofessor{\gdef\@majorprofessor}
+\def\committeeA{\gdef\@committeeA}
+\def\committeeB{\gdef\@committeeB}
+\def\committeeC{\gdef\@committeeC}
+\def\committeeD{\gdef\@committeeD}
+\def\admin{\gdef\@admin}
 
 \def\month{\gdef\@month}
 \def\year{\gdef\@year}
@@ -159,7 +164,12 @@
 \def\@institution{University of Idaho}
 \def\@faculty{College of Graduate Studies}
 \def\@campus{Moscow}
-\def\@majorprofessor{Luke Harmon, Ph.D.}
+\def\@majorprofessor{Luke J. Harmon, Ph.D.}
+\def\@committeeA{Jack Sullivan, Ph.D.}
+\def\@committeeB{Scott L. Nuismer, Ph.D.}
+\def\@committeeC{Paul Joyce, Ph.D.}
+\def\@committeeD{Arne {\O}. Mooers, Ph.D.}
+\def\@admin{Eva M. Top, Ph.D.}
 
 %\def\maketitle{
 %\thispagestyle{empty}
@@ -214,9 +224,17 @@
   \bigskip
 
   \@month\ \@year\\[12pt]
-  \bigskip
 
-  {\textit{Major Professor: }\textsc\@majorprofessor}\\[24pt]
+  \textit{Major Professor}\\
+  {\textsc\@majorprofessor}\\[12pt]
+  \textit{Committee}\\
+  {\textsc\@committeeA}\\
+  {\textsc\@committeeB}\\
+  {\textsc\@committeeC}\\
+  {\textsc\@committeeD}\\[12pt]
+  \textit{Department Administrator}\\
+  {\textsc\@admin}\\[12pt]
+
 \end{center}
 \textspacing
 \newpage
